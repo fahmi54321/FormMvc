@@ -8,13 +8,14 @@ import com.android.testcakratech.MyApplication
 import com.android.testcakratech.db.Form
 import com.android.testcakratech.db.FormDao
 import com.android.testcakratech.db.FormDatabase
+import com.android.testcakratech.view.common.activity.BaseActivity
 import com.android.testcakratech.view.common.dialog.DialogNavigator
 import com.android.testcakratech.view.common.navigator.ScreenNavigator
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.*
 
-class FormActivity : AppCompatActivity(), FormMvcView.Listener {
+class FormActivity : BaseActivity(), FormMvcView.Listener {
 
     private lateinit var dialogNavigator: DialogNavigator
     private lateinit var screenNavigator: ScreenNavigator
@@ -29,7 +30,7 @@ class FormActivity : AppCompatActivity(), FormMvcView.Listener {
 
         dialogNavigator = DialogNavigator(this)
         screenNavigator = ScreenNavigator(this)
-        formUseCase = (application as MyApplication).formUserCase
+        formUseCase = appCompositionRoot.formUserCase
 
     }
 

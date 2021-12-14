@@ -7,11 +7,12 @@ import android.view.LayoutInflater
 import com.android.testcakratech.MyApplication
 import com.android.testcakratech.db.FormDao
 import com.android.testcakratech.db.FormDatabase
+import com.android.testcakratech.view.common.activity.BaseActivity
 import com.android.testcakratech.view.common.navigator.ScreenNavigator
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class MainActivity : AppCompatActivity(), MainMvcView.Listener {
+class MainActivity : BaseActivity(), MainMvcView.Listener {
 
     private lateinit var viewMvc: MainMvcView
     private val dataLoding = false
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity(), MainMvcView.Listener {
         setContentView(viewMvc.binding.root)
 
         //main use case
-        mainUseCase = (application as MyApplication).mainUseCase
+        mainUseCase = appCompositionRoot.mainUseCase
 
         //screen nav
         screenNavigator = ScreenNavigator(this)
