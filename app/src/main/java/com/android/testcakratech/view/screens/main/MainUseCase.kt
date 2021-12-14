@@ -8,10 +8,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainUseCase(
-    private val context: Context
+    private var dao: FormDao
 ) {
-    //room
-    private var dao = FormDatabase.getInstance(context.applicationContext).formDao()
 
     fun fetchData(
         responseHandler: (List<Form>) -> Unit,

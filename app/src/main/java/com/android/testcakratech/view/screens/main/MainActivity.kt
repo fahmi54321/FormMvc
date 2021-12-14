@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import com.android.testcakratech.MyApplication
 import com.android.testcakratech.db.FormDao
 import com.android.testcakratech.db.FormDatabase
 import com.android.testcakratech.view.common.navigator.ScreenNavigator
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(), MainMvcView.Listener {
         setContentView(viewMvc.binding.root)
 
         //main use case
-        mainUseCase = MainUseCase(this)
+        mainUseCase = (application as MyApplication).mainUseCase
 
         //screen nav
         screenNavigator = ScreenNavigator(this)

@@ -13,15 +13,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class FormUseCase(
-    private val context: Context
+    private var dao: FormDao
 ) {
 
     sealed class Result {
         class Success() : Result()
         object Failure : Result()
     }
-
-    private var dao = FormDatabase.getInstance(context.applicationContext).formDao()
 
     suspend fun registerForm(
         nama: String,

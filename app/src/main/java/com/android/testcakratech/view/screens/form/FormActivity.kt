@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.lifecycle.viewModelScope
+import com.android.testcakratech.MyApplication
 import com.android.testcakratech.db.Form
 import com.android.testcakratech.db.FormDao
 import com.android.testcakratech.db.FormDatabase
@@ -28,7 +29,7 @@ class FormActivity : AppCompatActivity(), FormMvcView.Listener {
 
         dialogNavigator = DialogNavigator(this)
         screenNavigator = ScreenNavigator(this)
-        formUseCase = FormUseCase(this)
+        formUseCase = (application as MyApplication).formUserCase
 
     }
 
