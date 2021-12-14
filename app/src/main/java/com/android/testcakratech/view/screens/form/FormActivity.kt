@@ -28,9 +28,9 @@ class FormActivity : BaseActivity(), FormMvcView.Listener {
         viewMvcView = FormMvcView(LayoutInflater.from(this))
         setContentView(viewMvcView.binding.root)
 
-        dialogNavigator = DialogNavigator(this)
-        screenNavigator = ScreenNavigator(this)
-        formUseCase = appCompositionRoot.formUserCase
+        dialogNavigator = compositionRoot.dialogNavigator
+        screenNavigator = compositionRoot.screenNavigator
+        formUseCase = compositionRoot.formUserCase
 
     }
 

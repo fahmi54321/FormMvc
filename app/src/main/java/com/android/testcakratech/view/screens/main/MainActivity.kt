@@ -25,10 +25,10 @@ class MainActivity : BaseActivity(), MainMvcView.Listener {
         setContentView(viewMvc.binding.root)
 
         //main use case
-        mainUseCase = appCompositionRoot.mainUseCase
+        mainUseCase = compositionRoot.mainUseCase
 
         //screen nav
-        screenNavigator = ScreenNavigator(this)
+        screenNavigator = compositionRoot.screenNavigator
 
     }
 
