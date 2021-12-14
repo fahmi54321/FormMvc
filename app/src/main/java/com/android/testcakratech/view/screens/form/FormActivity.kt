@@ -25,7 +25,7 @@ class FormActivity : BaseActivity(), FormMvcView.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewMvcView = FormMvcView(LayoutInflater.from(this))
+        viewMvcView = compositionRoot.viewMvcFactory.newFormActivity()
         setContentView(viewMvcView.binding.root)
 
         dialogNavigator = compositionRoot.dialogNavigator

@@ -21,7 +21,7 @@ class MainActivity : BaseActivity(), MainMvcView.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewMvc = MainMvcView(LayoutInflater.from(this))
+        viewMvc = compositionRoot.viewMvcFactory.newMainActivity()
         setContentView(viewMvc.binding.root)
 
         //main use case
