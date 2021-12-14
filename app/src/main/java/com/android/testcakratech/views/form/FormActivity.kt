@@ -1,18 +1,9 @@
-package com.android.testcakratech.view.screens.form
+package com.android.testcakratech.views.form
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import androidx.lifecycle.viewModelScope
-import com.android.testcakratech.MyApplication
-import com.android.testcakratech.db.Form
-import com.android.testcakratech.db.FormDao
-import com.android.testcakratech.db.FormDatabase
-import com.android.testcakratech.view.common.activity.BaseActivity
-import com.android.testcakratech.view.common.dialog.DialogNavigator
-import com.android.testcakratech.view.common.navigator.ScreenNavigator
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.android.testcakratech.common.activity.BaseActivity
+import com.android.testcakratech.common.dialog.DialogNavigator
+import com.android.testcakratech.common.navigator.ScreenNavigator
 import kotlinx.coroutines.*
 
 class FormActivity : BaseActivity(), FormMvcView.Listener {

@@ -1,9 +1,9 @@
-package com.android.testcakratech.common.composition
+package com.android.testcakratech.root.composition
 
-import com.android.testcakratech.view.common.dialog.DialogNavigator
-import com.android.testcakratech.view.common.viewmvc.ViewMvcFactory
-import com.android.testcakratech.view.screens.form.FormUseCase
-import com.android.testcakratech.view.screens.main.MainUseCase
+import com.android.testcakratech.common.dialog.DialogNavigator
+import com.android.testcakratech.common.viewmvc.ViewMvcFactory
+import com.android.testcakratech.views.form.FormUseCase
+import com.android.testcakratech.views.main.MainUseCase
 
 class PresentationCompositionRoot(
     private val activityCompositionRoot: ActivityCompositionRoot

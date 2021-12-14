@@ -1,13 +1,7 @@
-package com.android.testcakratech.view.screens.form
+package com.android.testcakratech.views.form
 
-import android.content.Context
-import com.android.testcakratech.db.Form
-import com.android.testcakratech.db.FormDao
-import com.android.testcakratech.db.FormDatabase
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.functions.Action
-import io.reactivex.rxjava3.observers.DisposableSingleObserver
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.android.testcakratech.room.Form
+import com.android.testcakratech.room.FormDao
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -28,7 +22,7 @@ class FormUseCase(
     ): Result {
         return withContext(Dispatchers.IO) {
             try {
-                var a = dao.insertForm(Form(0, nama, email, alamat))
+                dao.insertForm(Form(0, nama, email, alamat))
                 return@withContext Result.Success()
             } catch (t: Throwable) {
                 if (t !is CancellationException) {

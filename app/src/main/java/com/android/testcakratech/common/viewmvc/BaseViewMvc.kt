@@ -1,9 +1,8 @@
-package com.android.testcakratech.view.screens.common
+package com.android.testcakratech.common.viewmvc
 
 import android.content.Context
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
-import com.android.testcakratech.view.screens.main.MainMvcView
 
 open abstract class BaseViewMvc<LISTENER_TYPE, VB : ViewBinding>(
     private val layoutInflater: LayoutInflater

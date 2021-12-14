@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestCakraTech">
         <activity
-            android:name=".view.screens.form.FormActivity"
+            android:name=".views.form.FormActivity"
             android:exported="false" />
         <activity
-            android:name=".view.screens.main.MainActivity"
+            android:name=".views.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

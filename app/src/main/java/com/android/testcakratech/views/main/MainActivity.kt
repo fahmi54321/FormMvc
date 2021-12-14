@@ -1,16 +1,9 @@
-package com.android.testcakratech.view.screens.main
+package com.android.testcakratech.views.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import com.android.testcakratech.MyApplication
-import com.android.testcakratech.db.FormDao
-import com.android.testcakratech.db.FormDatabase
-import com.android.testcakratech.view.common.activity.BaseActivity
-import com.android.testcakratech.view.common.navigator.ScreenNavigator
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.android.testcakratech.common.activity.BaseActivity
+import com.android.testcakratech.common.navigator.ScreenNavigator
 
 class MainActivity : BaseActivity(), MainMvcView.Listener {
 
@@ -37,6 +30,7 @@ class MainActivity : BaseActivity(), MainMvcView.Listener {
         mainUseCase.fetchData({
             viewMvc.hideProgressBar()
             viewMvc.bindData(it)
+            Log.i("main",it.toString())
         }, {
             viewMvc.hideProgressBar()
             Log.e("main", it.message ?: "")

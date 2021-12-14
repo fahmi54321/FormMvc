@@ -1,10 +1,10 @@
-package com.android.testcakratech.view.screens.adapter
+package com.android.testcakratech.views.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.testcakratech.databinding.ItemDataBinding
-import com.android.testcakratech.db.Form
+import com.android.testcakratech.room.Form
 
 class DataAdapter() : RecyclerView.Adapter<DataAdapter.CartPrelovedViewHolder>() {
 

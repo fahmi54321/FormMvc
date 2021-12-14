@@ -1,11 +1,9 @@
-package com.android.testcakratech.view.screens.form
+package com.android.testcakratech.views.form
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import com.android.testcakratech.databinding.ActivityFormBinding
-import com.android.testcakratech.view.screens.common.BaseViewMvc
-import com.android.testcakratech.view.screens.main.MainMvcView
+import com.android.testcakratech.common.viewmvc.BaseViewMvc
 
 class FormMvcView(
     private val layoutInflater: LayoutInflater

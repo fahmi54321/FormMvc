@@ -1,8 +1,8 @@
-package com.android.testcakratech.view.common.dialog
+package com.android.testcakratech.common.dialog
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
-import com.android.testcakratech.view.common.navigator.ScreenNavigator
+import com.android.testcakratech.common.navigator.ScreenNavigator
 
 class DialogNavigator(
     private val context: Context

@@ -1,4 +1,4 @@
-package com.android.testcakratech.db
+package com.android.testcakratech.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,13 +1,11 @@
-package com.android.testcakratech.view.screens.main
+package com.android.testcakratech.views.main
 
-import android.content.Context
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.testcakratech.databinding.ActivityMainBinding
-import com.android.testcakratech.db.Form
-import com.android.testcakratech.view.common.navigator.ScreenNavigator
-import com.android.testcakratech.view.screens.adapter.DataAdapter
-import com.android.testcakratech.view.screens.common.BaseViewMvc
+import com.android.testcakratech.room.Form
+import com.android.testcakratech.views.adapter.DataAdapter
+import com.android.testcakratech.common.viewmvc.BaseViewMvc
 
 class MainMvcView(
     private val layoutInflater: LayoutInflater

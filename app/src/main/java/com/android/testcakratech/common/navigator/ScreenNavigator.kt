@@ -1,9 +1,9 @@
-package com.android.testcakratech.view.common.navigator
+package com.android.testcakratech.common.navigator
 
 import android.app.Activity
 import android.content.Intent
-import com.android.testcakratech.view.screens.form.FormActivity
-import com.android.testcakratech.view.screens.main.MainActivity
+import com.android.testcakratech.views.form.FormActivity
+import com.android.testcakratech.views.main.MainActivity
 
 class ScreenNavigator(
     private val activity: Activity

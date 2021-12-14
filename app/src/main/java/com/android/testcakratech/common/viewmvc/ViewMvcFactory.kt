@@ -1,8 +1,8 @@
-package com.android.testcakratech.view.common.viewmvc
+package com.android.testcakratech.common.viewmvc
 
 import android.view.LayoutInflater
-import com.android.testcakratech.view.screens.form.FormMvcView
-import com.android.testcakratech.view.screens.main.MainMvcView
+import com.android.testcakratech.views.form.FormMvcView
+import com.android.testcakratech.views.main.MainMvcView
 
 class ViewMvcFactory(
     private val layoutInflater: LayoutInflater
