@@ -9,8 +9,10 @@ class AppCompositionRoot(
     private val context: Context
 ) {
 
-    private val dao = FormDatabase.getInstance(context)
-        .formDao()
+    private val dao by lazy {
+        FormDatabase.getInstance(context)
+            .formDao()
+    }
 
     val mainUseCase get() = MainUseCase(dao)
     val formUserCase get() = FormUseCase(dao)
