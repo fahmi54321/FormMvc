@@ -4,20 +4,19 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import com.android.testcakratech.databinding.ActivityFormBinding
+import com.android.testcakratech.view.screens.common.BaseViewMvc
 import com.android.testcakratech.view.screens.main.MainMvcView
 
 class FormMvcView(
     private val layoutInflater: LayoutInflater
+) : BaseViewMvc<FormMvcView.Listener, ActivityFormBinding>(
+    layoutInflater
 ) {
 
     interface Listener {
         fun onSaveForm(nama: String, email: String, alamat: String)
         fun onBackNavigation()
     }
-
-    val binding = ActivityFormBinding.inflate(layoutInflater)
-    private val context: Context get() = binding.root.context
-    private val listeners = HashSet<Listener>()
 
     init {
         binding.btnSimpan.setOnClickListener {
@@ -36,14 +35,6 @@ class FormMvcView(
         }
     }
 
-    fun registerListener(listener: Listener) {
-        listeners.add(listener)
-    }
-
-    fun unRegisterListener(listener: Listener) {
-        listeners.remove(listener)
-    }
-
     fun showProgressBar() {
         binding.progressBar.visibility = View.VISIBLE
     }
@@ -59,5 +50,8 @@ class FormMvcView(
     fun disableButton() {
         binding.btnSimpan.isEnabled = false
     }
+
+    override val bind: (LayoutInflater) -> ActivityFormBinding
+        get() = ActivityFormBinding::inflate
 
 }

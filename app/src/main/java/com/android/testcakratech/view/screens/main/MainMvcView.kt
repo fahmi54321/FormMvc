@@ -7,9 +7,12 @@ import com.android.testcakratech.databinding.ActivityMainBinding
 import com.android.testcakratech.db.Form
 import com.android.testcakratech.view.common.navigator.ScreenNavigator
 import com.android.testcakratech.view.screens.adapter.DataAdapter
+import com.android.testcakratech.view.screens.common.BaseViewMvc
 
 class MainMvcView(
     private val layoutInflater: LayoutInflater
+) : BaseViewMvc<MainMvcView.Listener, ActivityMainBinding>(
+    layoutInflater
 ) {
 
     interface Listener {
@@ -17,12 +20,8 @@ class MainMvcView(
         fun onToFormActivity()
     }
 
-    private val listeners = HashSet<Listener>()
     private var dataAdapter: DataAdapter
     private var dataLoding = false
-
-    val binding = ActivityMainBinding.inflate(layoutInflater)
-    private val context: Context get() = binding.root.context
 
     init {
 
@@ -45,14 +44,6 @@ class MainMvcView(
         }
     }
 
-    fun registerListener(listener: Listener) {
-        listeners.add(listener)
-    }
-
-    fun unRegisterListener(listener: Listener) {
-        listeners.remove(listener)
-    }
-
     fun hideProgressBar() {
         dataLoding = false
         if (binding.swipeRefresh.isRefreshing) {
@@ -69,5 +60,8 @@ class MainMvcView(
         dataAdapter.setList(it)
         dataAdapter.notifyDataSetChanged()
     }
+
+    override val bind: (LayoutInflater) -> ActivityMainBinding
+        get() = ActivityMainBinding::inflate
 
 }
