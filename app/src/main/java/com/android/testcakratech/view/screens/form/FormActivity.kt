@@ -2,8 +2,7 @@ package com.android.testcakratech.view.screens.form
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.android.testcakratech.databinding.ActivityFormBinding
+import android.view.LayoutInflater
 import com.android.testcakratech.db.Form
 import com.android.testcakratech.db.FormDao
 import com.android.testcakratech.db.FormDatabase
@@ -12,62 +11,49 @@ import com.android.testcakratech.view.common.navigator.ScreenNavigator
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class FormActivity : AppCompatActivity() {
+class FormActivity : AppCompatActivity(), FormMvcView.Listener {
 
     private lateinit var dao: FormDao
-    private lateinit var binding: ActivityFormBinding
+
     private lateinit var dialogNavigator: DialogNavigator
     private lateinit var screenNavigator: ScreenNavigator
+    private lateinit var viewMvcView: FormMvcView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFormBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        viewMvcView = FormMvcView(LayoutInflater.from(this))
+        setContentView(viewMvcView.binding.root)
 
         dialogNavigator = DialogNavigator(this)
         screenNavigator = ScreenNavigator(this)
 
         dao = FormDatabase.getInstance(applicationContext).formDao()
-        binding.btnSimpan.setOnClickListener {
-
-            var nama = binding.edtNama.text.toString()
-            var email = binding.edtEmail.text.toString()
-            var alamat = binding.edtAlamat.text.toString()
-
-            simpanForm(nama, email, alamat)
-        }
-
-        binding.fabBack.setOnClickListener {
-            screenNavigator.onBackNavigation()
-        }
 
     }
 
-    fun simpanForm(nama: String, email: String, alamat: String) {
+    override fun onSaveForm(nama: String, email: String, alamat: String) {
+        simpanForm(nama, email, alamat)
+    }
 
-        showProgressBar()
-        disableButton()
+    override fun onBackNavigation() {
+        screenNavigator.onBackNavigation()
+    }
+
+    fun simpanForm(nama: String, email: String, alamat: String) {
+        viewMvcView.disableButton()
+        viewMvcView.showProgressBar()
         if (nama.isNullOrEmpty()) {
-            hideProgressBar()
-            enableButton()
-            dialogNavigator.showAlertDialog(
-                "Pesan",
-                "Nama tidak boleh kosong"
-            )
+            viewMvcView.hideProgressBar()
+            viewMvcView.enableButton()
+            dialogNavigator.showAlertDialog("Pesan", "Nama tidak boleh kosong")
         } else if (email.isNullOrEmpty()) {
-            hideProgressBar()
-            enableButton()
-            dialogNavigator.showAlertDialog(
-                "Pesan",
-                "Email tidak boleh kosong"
-            )
+            viewMvcView.hideProgressBar()
+            viewMvcView.enableButton()
+            dialogNavigator.showAlertDialog("Pesan", "Email tidak boleh kosong")
         } else if (alamat.isNullOrEmpty()) {
-            hideProgressBar()
-            enableButton()
-            dialogNavigator.showAlertDialog(
-                "Pesan",
-                "Alamat tidak boleh kosong"
-            )
+            viewMvcView.hideProgressBar()
+            viewMvcView.enableButton()
+            dialogNavigator.showAlertDialog("Pesan", "Alamat tidak boleh kosong")
         } else {
             dao.insertForm(Form(0, nama, email, alamat))
                 .subscribeOn(Schedulers.io())
@@ -78,28 +64,22 @@ class FormActivity : AppCompatActivity() {
                         "Berhasil menyimpan",
                         screenNavigator
                     )
-                    hideProgressBar()
-                    enableButton()
+                    viewMvcView.hideProgressBar()
+                    viewMvcView.enableButton()
                 }, {
-                    hideProgressBar()
-                    enableButton()
+                    viewMvcView.hideProgressBar()
+                    viewMvcView.enableButton()
                 })
         }
     }
 
-    private fun showProgressBar() {
-        binding.progressBar.visibility = View.VISIBLE
+    override fun onStart() {
+        super.onStart()
+        viewMvcView.registerListener(this)
     }
 
-    private fun hideProgressBar() {
-        binding.progressBar.visibility = View.GONE
-    }
-
-    private fun enableButton() {
-        binding.btnSimpan.isEnabled = true
-    }
-
-    private fun disableButton() {
-        binding.btnSimpan.isEnabled = false
+    override fun onStop() {
+        super.onStop()
+        viewMvcView.unRegisterListener(this)
     }
 }
