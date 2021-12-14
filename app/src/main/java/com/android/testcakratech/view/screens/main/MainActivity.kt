@@ -2,6 +2,7 @@ package com.android.testcakratech.view.screens.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import com.android.testcakratech.db.FormDao
 import com.android.testcakratech.db.FormDatabase
@@ -11,18 +12,18 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainActivity : AppCompatActivity(), MainMvcView.Listener {
 
-    private lateinit var dao: FormDao
     private lateinit var viewMvc: MainMvcView
     private val dataLoding = false
     private lateinit var screenNavigator: ScreenNavigator
+    private lateinit var mainUseCase: MainUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewMvc = MainMvcView(LayoutInflater.from(this))
         setContentView(viewMvc.binding.root)
 
-        //room
-        dao = FormDatabase.getInstance(applicationContext).formDao()
+        //main use case
+        mainUseCase = MainUseCase(this)
 
         //screen nav
         screenNavigator = ScreenNavigator(this)
@@ -31,15 +32,13 @@ class MainActivity : AppCompatActivity(), MainMvcView.Listener {
 
     private fun getData() {
         viewMvc.showProgressBar()
-        dao.getAllForm()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                viewMvc.hideProgressBar()
-                viewMvc.bindData(it)
-            }, {
-                viewMvc.hideProgressBar()
-            })
+        mainUseCase.fetchData({
+            viewMvc.hideProgressBar()
+            viewMvc.bindData(it)
+        }, {
+            viewMvc.hideProgressBar()
+            Log.e("main", it.message ?: "")
+        })
     }
 
     override fun onRefreshClicked() {
