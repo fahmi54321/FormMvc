@@ -1,8 +1,6 @@
 package com.android.testcakratech.common.composition
 
-import androidx.appcompat.app.AppCompatActivity
 import com.android.testcakratech.view.common.dialog.DialogNavigator
-import com.android.testcakratech.view.common.navigator.ScreenNavigator
 import com.android.testcakratech.view.common.viewmvc.ViewMvcFactory
 import com.android.testcakratech.view.screens.form.FormUseCase
 import com.android.testcakratech.view.screens.main.MainUseCase
