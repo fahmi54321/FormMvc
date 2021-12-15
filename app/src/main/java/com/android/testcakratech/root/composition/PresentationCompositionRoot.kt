@@ -8,7 +8,6 @@ import com.android.testcakratech.views.main.MainUseCase
 class PresentationCompositionRoot(
     private val activityCompositionRoot: ActivityCompositionRoot
 ) {
-
     private val layoutInflater get() = activityCompositionRoot.layoutInflater
     private val dao get() = activityCompositionRoot.dao
 
